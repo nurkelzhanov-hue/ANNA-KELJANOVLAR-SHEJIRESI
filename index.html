@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anna Keljanovlar Tooriy Shejiresi</title>
+    <title>Anna Keljanovlar Shańaraǵı Shejiresi</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -63,7 +63,6 @@
             border-top: 2px dashed #cbd5e1;
         }
 
-        /* FOTOLÍ KARTALAR */
         .member-card {
             background: white;
             border: 2px solid #e2e8f0;
@@ -87,9 +86,8 @@
         .female { border-top: 5px solid #ec4899; }
         .kelin { border-top: 5px solid #10b981; } 
         .kuyew { border-top: 5px solid #f59e0b; }
-        .jiyen-style { border-top: 5px solid #e67e22; }
+        .qiz-aqliq-style { border-top: 5px solid #e67e22; }
 
-        /* ANIQ FOTO USÍN ÚLKEYTILGEN AVATAR */
         .member-avatar {
             width: 90px;
             height: 90px;
@@ -130,7 +128,7 @@
         .female .role-tag { background: #fdf2f8; color: #be185d; }
         .kelin .role-tag { background: #ecfdf5; color: #065f46; }
         .kuyew .role-tag { background: #fff7ed; color: #c2410c; }
-        .jiyen-style .role-tag { background: #fdf6ee; color: #d35400; }
+        .qiz-aqliq-style .role-tag { background: #fdf6ee; color: #d35400; }
 
         .relation-line {
             display: flex;
@@ -157,14 +155,14 @@
         }
 
         .line-text.kuyew-text { background: #f59e0b; }
-        .line-text.parent-kelin { background: #475569; top: -45px; }
 
+        /* MODALÓYNÍ STYLLERI */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
             z-index: 999;
@@ -172,37 +170,53 @@
 
         .modal-content {
             background: white;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 500px;
+            padding: 35px;
+            border-radius: 24px;
+            max-width: 550px;
             width: 90%;
             position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: cubic-bezier(0.16, 1, 0.3, 1) 0.4s modalSlide;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .close-btn {
             position: absolute;
-            top: 15px; right: 20px;
-            font-size: 28px;
+            top: 20px; right: 25px;
+            font-size: 30px;
             cursor: pointer;
             color: #94a3b8;
+            transition: color 0.2s;
         }
+        .close-btn:hover { color: #1e293b; }
 
         .modal-info-block {
             background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border-left: 4px solid #1e3a8a;
+            padding: 20px;
+            border-radius: 14px;
+            margin-top: 20px;
+            border-left: 5px solid #1e3a8a;
         }
 
-        .modal-info-block p { margin: 6px 0; font-size: 0.95em; line-height: 1.5; }
+        .modal-info-block p { 
+            margin: 10px 0; 
+            font-size: 1em; 
+            line-height: 1.6; 
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .modal-info-block p:last-child { border-bottom: none; }
         .couple-group { display: flex; align-items: center; gap: 10px; }
     </style>
 </head>
 <body>
 
     <h1>Anna Keljanovlar Shańaraǵı Shejiresi</h1>
-    <p class="subtitle">Hámme áwladlar, kelin-kúyewler hám jiyen aqlıqlar anıq fotoları menen</p>
+    <p class="subtitle">Barlıq áwladlar dizimi hám tolıq jeke maǵlıwmatlar (Kartalar ústine basıń)</p>
 
     <div class="tree">
         
@@ -210,7 +224,7 @@
         <div class="generation-title">1-ÁWLAD: Úlken Atalarımız (Tikarshılar)</div>
         <div class="generation">
             <div class="couple-group">
-                <div class="member-card male" onclick="openDetails('Keljanov Najimatdin', '1916 — 1983 iyul', 'Shimbay rayonı', 'Najimatdin ata baslı áwlad tikarshısı.')">
+                <div class="member-card male" onclick="openDetails('Keljanov Najimatdin', '1916 — 1983 jıl iyul', 'Anna', 'Shimbay rayonı', 'Nukus qalası', 'Shańaraqtıń baslı tikarshısı hám baslı babamız. Ómir boyı túrli qurılıs tarawlarında úlken miynet etken adam.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-4.png" alt="Najimatdin Ata">
                     <div class="member-name">Keljanov Najimatdin</div>
                     <div class="member-dates">1916 — 1983</div>
@@ -225,7 +239,7 @@
                     </svg>
                 </div>
 
-                <div class="member-card female" onclick="openDetails('Najimova Bazargul', '1914 — 1995 may', 'Kegeyli rayonı', 'Áwladlar anası.')">
+                <div class="member-card female" onclick="openDetails('Najimova Bazargul', '1914 — 1995 jıl may', 'Qazayaqlı', 'Kegeyli rayonı', 'Nukus qalası', 'Shańaraqtıń úlken apası, bereketi hám mútteber anası. Áwladlardıń tınışlıǵı hám tárbiyasında óshpes iz qaldırǵan.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-7.png" alt="Bazargul Apa">
                     <div class="member-name">Najimova Bazargul</div>
                     <div class="member-dates">1914 — 1995</div>
@@ -238,7 +252,7 @@
         <div class="generation-title">2-ÁWLAD: Ekinshi Atalarımız</div>
         <div class="generation">
             <div class="couple-group">
-                <div class="member-card male" onclick="openDetails('Keljanov Sharapatdin', '1924 — 1995 fevral', 'Shimbay', '1941-1945 urıs qatnasıwshısı.')">
+                <div class="member-card male" onclick="openDetails('Keljanov Sharapatdin', '1924 — 1995 jıl fevral', 'Anna', 'Shimbay rayonı', 'Belgisiz', '1941-1945-jıllardaǵı Ekinshi jahan urısı qatnasıwshısı hám qaharmanı. Urıstan keyin Ishki isler uyımlarında (IIB) uzaq jıllar múnasip xizmet kórsetken ekinshi atamız.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-3.png" alt="Sharapatdin Ata">
                     <div class="member-name">Keljanov Sharapatdin</div>
                     <div class="member-dates">1924 — 1995</div>
@@ -252,7 +266,7 @@
                     </svg>
                 </div>
 
-                <div class="member-card female" onclick="openDetails('Sultanyazova Gúlayım', 'Belgisiz', '-', 'Sharapatdin atanıń ómirlik joldası')">
+                <div class="member-card female" onclick="openDetails('Sultanyazova Gúlayım', 'Belgisiz jıl', 'Kórsetilmegen', 'Belgisiz', 'Belgisiz', 'Sharapatdin atanıń múnasip ómirlik joldası hám berekeli ekinshi ájemiz. Shańaraqta 9 perzentti dúnyaǵa keltirip, jetistiriwde úlken úles qosqan.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-6.png" alt="Gúlayım Áje">
                     <div class="member-name">Sultanyazova Gúlayım</div>
                     <div class="member-dates">Ómirlik joldası</div>
@@ -262,10 +276,11 @@
         </div>
 
         <!-- 3-ÁWLAD -->
-        <div class="generation-title">3-ÁWLAD: Apalar hám Ákeler qatarı</div>
+        <div class="generation-title">3-ÁWLAD: Sharapatdin hám Gúlayımnıń Ulları, Qızları hám Kelinleri</div>
         <div class="generation">
+            <!-- Gulzar Apa hám Jumamurat Kúyew -->
             <div class="couple-group">
-                <div class="member-card female">
+                <div class="member-card female" onclick="openDetails('Nazimova Gulzar Sharapatdinovna', '1949 — Házir tiri', 'Anna', 'Nukus qalası', 'Tiri', 'Sharapatdin atanıń eń úlken berekeli birinshi qızı. Shańaraqtıń aqlı hám húrmetli apası.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-5.png" alt="Gulzar Apa">
                     <div class="member-name">Gulzar Sharapatdinovna</div>
                     <div class="member-dates">1949 — tiri</div>
@@ -275,7 +290,7 @@
                     <span class="line-text kuyew-text">Kúyewi</span>
                     <svg width="70" height="20"><line x1="5" y1="10" x2="65" y2="10" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)"/></svg>
                 </div>
-                <div class="member-card kuyew">
+                <div class="member-card kuyew" onclick="openDetails('Seytimbetov Jumamurat', '1947 — 2023 jıl', 'Kórsetilmegen', 'Shimbay', 'Kórsetilmegen', 'Gulzar apanıń súyikli ómirlik joldası, shańaraqtıń rásmiy hám húrmetli kúyew balası.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-1.png" alt="Jumamurat Kúyew">
                     <div class="member-name">Seytimbetov Jumamurat</div>
                     <div class="member-dates">1947 — 2023</div>
@@ -283,8 +298,9 @@
                 </div>
             </div>
 
+            <!-- Xayratdin Áke hám Asiya Ana -->
             <div class="couple-group" style="margin-left: 40px;">
-                <div class="member-card male">
+                <div class="member-card male" onclick="openDetails('Keljanov Xayratdin Sharapatdinovich', '1951 — Házir tiri', 'Anna', 'Nukus qalası', 'Tiri', 'Sharapatdin atanıń ekinshi ulı, biziń asıl ákemiz. 1974-1994 jıllar aralıǵında Ishki isler uyımlarında (IIB) múnasip xizmet atqarǵan, házirgi waqıtta napaqadaǵı húrmetli atamız.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-2.png" alt="Xayratdin Áke">
                     <div class="member-name">Xayratdin Sharapatdinovich</div>
                     <div class="member-dates">1951 — tiri</div>
@@ -294,7 +310,7 @@
                     <span class="line-text">Ómirlik joldası</span>
                     <svg width="150" height="20"><line x1="5" y1="10" x2="145" y2="10" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)" /></svg>
                 </div>
-                <div class="member-card female">
+                <div class="member-card female" onclick="openDetails('Awezova Asiya Qallievna', '1959 — Házir tiri', 'Qazayaqlı', 'Qaraózek rayonı', 'Tiri', 'Xayratdin ákemizdiń ómirlik joldası, mútteber anamız. Sharapatdin ata hám Gúlayım ájeniń pákiyze kelini. Shańaraqta 6 perzentti tárbiyalap jetistirdi.')">
                     <img class="member-avatar" src="https://img.icons8.com/illustrations/external-karat-boms-karat/100/external-avatar-user-avatar-pack-karat-boms-karat-8.png" alt="Asiya Ana">
                     <div class="member-name">Awezova Asiya Qallievna</div>
                     <div class="member-dates">1959 — tiri</div>
@@ -308,73 +324,123 @@
         <div class="generation">
             <!-- 1. Shamshetdin -->
             <div class="couple-group">
-                <div class="member-card male"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Shamshetdin</div><div class="role-tag">1-Ulı</div></div>
+                <div class="member-card male" onclick="openDetails('Keljanov Shamshetdin Xayratdinovich', '1980 — Házir tiri', 'Anna', 'Nukus qalası', 'Tiri', 'Xayratdin ákemizdiń birinshi ulı. Shańaraqtıń úlken tayanshı.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png">
+                    <div class="member-name">Shamshetdin</div>
+                    <div class="role-tag">1-Ulı</div>
+                </div>
                 <div class="relation-line" style="min-width: 120px;"><span class="line-text">Kelin</span><svg width="90" height="20"><line x1="5" y1="10" x2="85" y2="10" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)" /></svg></div>
-                <div class="member-card kelin"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Gulmiyra</div><div class="role-tag">Kelin (Qazayaqlı)</div></div>
+                <div class="member-card kelin" onclick="openDetails('Maxanbetova Gulmiyra', 'Belgisiz jıl', 'Qazayaqlı', 'Nukus qalası', 'Tiri', 'Shamshetdinniń ómirlik joldası, Asiya hám Xayratdin shańaraǵınıń húrmetli kelini.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png">
+                    <div class="member-name">Gulmiyra</div>
+                    <div class="role-tag">Kelin (Qazayaqlı)</div>
+                </div>
             </div>
 
             <!-- 2. Baxtiyar -->
             <div class="couple-group">
-                <div class="member-card male"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Baxtiyar</div><div class="role-tag">2-Ulı</div></div>
+                <div class="member-card male" onclick="openDetails('Keljanov Baxtiyar Xayratdinovich', '1983 — Házir tiri', 'Anna', 'Nukus qalası', 'Tiri', 'Xayratdin ákemizdiń ekinshi áwlad ulı.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png">
+                    <div class="member-name">Baxtiyar</div>
+                    <div class="role-tag">2-Ulı</div>
+                </div>
                 <div class="relation-line" style="min-width: 120px;"><span class="line-text">Kelin</span><svg width="90" height="20"><line x1="5" y1="10" x2="85" y2="10" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)" /></svg></div>
-                <div class="member-card kelin"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Gulchexra</div><div class="role-tag">Kelin (Ayteke)</div></div>
+                <div class="member-card kelin" onclick="openDetails('Atamuratova Gulchexra', 'Belgisiz jıl', 'Ayteke', 'Nukus qalası', 'Tiri', 'Baxtiyardıń ómirlik joldası, shańaraqtıń piriwli kelini.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png">
+                    <div class="member-name">Gulchexra</div>
+                    <div class="role-tag">Kelin (Ayteke)</div>
+                </div>
             </div>
 
             <!-- 3. Tursinay -->
             <div class="couple-group">
-                <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Tursinay</div><div class="role-tag">3-Qızı</div></div>
+                <div class="member-card female" onclick="openDetails('Keljanova Tursinay Xayratdinovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Xayratdin ákemizdiń úshinshi perzenti, rásmiy qızı.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png">
+                    <div class="member-name">Tursinay</div>
+                    <div class="role-tag">3-Qızı</div>
+                </div>
                 <div class="relation-line"><span class="line-text kuyew-text">Kúyewi</span><svg width="80" height="20"><line x1="5" y1="10" x2="75" y2="10" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)"/></svg></div>
-                <div class="member-card kuyew"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Daryabay</div><div class="role-tag">Kúyew (Uygır)</div></div>
+                <div class="member-card kuyew" onclick="openDetails('Turdimuratov Daryabay', 'Belgisiz jıl', 'Uygır', 'Nukus qalası', 'Tiri', 'Tursinaydıń ómirlik joldası, múnasip kúyew bala.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png">
+                    <div class="member-name">Daryabay</div>
+                    <div class="role-tag">Kúyew (Uygır)</div>
+                </div>
             </div>
 
             <!-- 4. Quralay -->
             <div class="couple-group">
-                <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Quralay</div><div class="role-tag">4-Qızı</div></div>
+                <div class="member-card female" onclick="openDetails('Keljanova Quralay Xayratdinovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Xayratdin ákemizdiń tórtinshi perzenti, rásmiy qızı.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png">
+                    <div class="member-name">Quralay</div>
+                    <div class="role-tag">4-Qızı</div>
+                </div>
                 <div class="relation-line"><span class="line-text kuyew-text">Kúyewi</span><svg width="80" height="20"><line x1="5" y1="10" x2="75" y2="10" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)"/></svg></div>
-                <div class="member-card kuyew"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Salamatdin</div><div class="role-tag">Kúyew (Qoldawlı)</div></div>
+                <div class="member-card kuyew" onclick="openDetails('Shimbergenov Salamatdin', 'Belgisiz jıl', 'Qoldawlı', 'Nukus qalası', 'Tiri', 'Quralaydıń ómirlik joldası, shańaraqtıń húrmetli kúyewi.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png">
+                    <div class="member-name">Salamatdin</div>
+                    <div class="role-tag">Kúyew (Qoldawlı)</div>
+                </div>
             </div>
 
             <!-- Nurmuxammeddin -->
-            <div class="member-card male"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Nurmuxammeddin</div><div class="role-tag">5-Ulı (Boydoq)</div></div>
+            <div class="member-card male" onclick="openDetails('Keljanov Nurmuxammeddin Xayratdinovich', '1990 — Házir tiri', 'Anna', 'Nukus qalası', 'Tiri', 'Xayratdin ákemizdiń besinshi ulı. Házirgi waqıtta boydoq, keleshek toy iyesi.')">
+                <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png">
+                <div class="member-name">Nurmuxammeddin</div>
+                <div class="role-tag">5-Ulı (Boydoq)</div>
+            </div>
             
             <!-- Nurlibek -->
-            <div class="member-card male"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Nurlibek</div><div class="role-tag">Kenje Ulı</div></div>
+            <div class="member-card male" onclick="openDetails('Keljanov Nurlibek Xayratdinovich', '2012 — Házir tiri', 'Anna', 'Nukus qalası', 'Tiri', 'Xayratdin ákemiz hám Asiya anamızdıń eń kenje ulı, erkesi.')">
+                <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png">
+                <div class="member-name">Nurlibek</div>
+                <div class="role-tag">Kenje Ulı</div>
+            </div>
 
             <!-- 6. Gulziyra -->
             <div class="couple-group">
-                <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Gulziyra</div><div class="role-tag">6-Qızı</div></div>
+                <div class="member-card female" onclick="openDetails('Keljanova Gulziyra Xayratdinovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Xayratdin ákemizdiń altınshı perzenti, húrmetli qızı.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png">
+                    <div class="member-name">Gulziyra</div>
+                    <div class="role-tag">6-Qızı</div>
+                </div>
                 <div class="relation-line"><span class="line-text kuyew-text">Kúyewi</span><svg width="80" height="20"><line x1="5" y1="10" x2="75" y2="10" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)"/></svg></div>
-                <div class="member-card kuyew"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Erkinbay</div><div class="role-tag">Kúyew (Uygır)</div></div>
+                <div class="member-card kuyew" onclick="openDetails('Xojabekov Erkinbay', 'Belgisiz jıl', 'Uygır', 'Nukus qalası', 'Tiri', 'Gulziyradıń súyikli ómirlik joldası, shańaraqtıń kúyew balası.')">
+                    <img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png">
+                    <div class="member-name">Erkinbay</div>
+                    <div class="role-tag">Kúyew (Uygır)</div>
+                </div>
             </div>
         </div>
 
-        <!-- 5-ÁWLAD: TUWÍSQAN AQLÍQLAR -->
+        <!-- 5-ÁWLAD: ULDAN TUWÍLGAN AQLÍQLAR -->
         <div class="generation-title">5-ÁWLAD: Aqlıqlar qatarı (Uldan tuwılǵanlar)</div>
         <div class="generation">
-            <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Dilfayruz</div><div class="role-tag">Shamshetdin qızı</div></div>
-            <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Dilshoda</div><div class="role-tag">Shamshetdin qızı</div></div>
-            <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Maxinur</div><div class="role-tag">Shamshetdin qızı</div></div>
-            <div class="member-card male"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Botirbek</div><div class="role-tag">Shamshetdin ulı</div></div>
-            <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Mubina</div><div class="role-tag">Shamshetdin qızı</div></div>
+            <!-- Shamshetdin aqlıqları -->
+            <div class="member-card female" onclick="openDetails('Dilfayruz Shamshetdinovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Shamshetdinniń qızı, Xayratdin ákemizdiń súyikli tuwısqan aqlıǵı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Dilfayruz</div><div class="role-tag">Shamshetdin qızı</div></div>
+            <div class="member-card female" onclick="openDetails('Dilshoda Shamshetdinovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Shamshetdinniń qızı, Xayratdin ákemizdiń ekinshi tuwısqan aqlıq qızı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Dilshoda</div><div class="role-tag">Shamshetdin qızı</div></div>
+            <div class="member-card female" onclick="openDetails('Maxinur Shamshetdinovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Shamshetdinniń qızı, shańaraqtıń dástúriy aqlıq qızı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Maxinur</div><div class="role-tag">Shamshetdin qızı</div></div>
+            <div class="member-card male" onclick="openDetails('Botirbek Shamshetdinovich', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Shamshetdinniń ulı, Xayratdin ákemizdiń rásmiy aqlıq ulı hám dawamshısı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Botirbek</div><div class="role-tag">Shamshetdin ulı</div></div>
+            <div class="member-card female" onclick="openDetails('Mubina Shamshetdinovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Shamshetdinniń kishi aqlıq qızı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Mubina</div><div class="role-tag">Shamshetdin qızı</div></div>
 
-            <div class="member-card male"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Ismoil</div><div class="role-tag">Baxtiyar ulı</div></div>
-            <div class="member-card female"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Munira</div><div class="role-tag">Baxtiyar qızı</div></div>
-            <div class="member-card male"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Ibrahim</div><div class="role-tag">Baxtiyar ulı</div></div>
+            <!-- Baxtiyar aqlıqları -->
+            <div class="member-card male" onclick="openDetails('Ismoil Baxtiyarovich', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Baxtiyardıń ulı, Xayratdin ákemizdiń úlken aqıllı aqlıq ulı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Ismoil</div><div class="role-tag">Baxtiyar ulı</div></div>
+            <div class="member-card female" onclick="openDetails('Munira Baxtiyarovna', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Baxtiyardıń qızı, shańaraqtıń suliw aqlıq qızı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Munira</div><div class="role-tag">Baxtiyar qızı</div></div>
+            <div class="member-card male" onclick="openDetails('Ibrahim Baxtiyarovich', 'Belgisiz jıl', 'Anna', 'Nukus qalası', 'Tiri', 'Baxtiyardıń kenje ulı, shańaraqtıń erke aqlıq ulı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Ibrahim</div><div class="role-tag">Baxtiyar ulı</div></div>
         </div>
 
         <!-- 5-ÁWLAD: QÍZ TÁREPTEN JIYEN AQLÍQLAR -->
-        <div class="generation-title" style="background: #e67e22;">5-ÁWLAD: Qız tárepten Jiyen Aqlıqlar</div>
+        <div class="generation-title" style="background: #e67e22;">5-ÁWLAD: Qız táreptegi aqlıqlar</div>
         <div class="generation" style="border-top: 2px dashed #e67e22;">
-            <div class="member-card female jiyen-style"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Jasmina</div><div class="role-tag">Tursinay qızı (Jiyen)</div></div>
-            <div class="member-card male jiyen-style"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Ruslan</div><div class="role-tag">Quralay ulı (Jiyen)</div></div>
-            <div class="member-card female jiyen-style"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Ranogul</div><div class="role-tag">Quralay qızı (Jiyen)</div></div>
-            <div class="member-card male jiyen-style"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Aydos</div><div class="role-tag">Gulziyra ulı (Jiyen)</div></div>
+            <div class="member-card female qiz-aqliq-style" onclick="openDetails('Jasmina Daryabaevna', 'Belgisiz jıl', 'Uygır (Atası tárep)', 'Nukus qalası', 'Tiri', 'Tursinay qızımızdıń perzenti, shańaraqtıń qız táreptegi múnasip aqlıǵı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Jasmina</div><div class="role-tag">Tursinay qızı</div></div>
+            <div class="member-card male qiz-aqliq-style" onclick="openDetails('Ruslan Salamatdinovich', 'Belgisiz jıl', 'Qoldawlı (Atası tárep)', 'Nukus qalası', 'Tiri', 'Quralay qızımızdıń ulı, shańaraqtıń qız táreptegi aqlıq ulı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Ruslan</div><div class="role-tag">Quralay ulı</div></div>
+            <div class="member-card female qiz-aqliq-style" onclick="openDetails('Ranogul Salamatdinovich', 'Belgisiz jıl', 'Qoldawlı (Atası tárep)', 'Nukus qalası', 'Tiri', 'Quralay qızımızdıń qızı, shańaraqtıń qız táreptegi aqlıq qızı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-female-circle.png"><div class="member-name">Ranogul</div><div class="role-tag">Quralay qızı</div></div>
+            <div class="member-card male qiz-aqliq-style" onclick="openDetails('Aydos Erkinbaevich', 'Belgisiz jıl', 'Uygır (Atası tárep)', 'Nukus qalası', 'Tiri', 'Gulziyra qızımızdıń ulı, shańaraqtıń qız táreptegi kishi aqlıq ulı.')"><img class="member-avatar" src="https://img.icons8.com/illustrations/flat/100/user-male-circle.png"><div class="member-name">Aydos</div><div class="role-tag">Gulziyra ulı</div></div>
         </div>
 
         <!-- 6-ÁWLAD -->
         <div class="generation-title">6-ÁWLAD: Shawlıqlar qatarı (Keleshek Dawamshıları)</div>
         <div class="generation">
-            <div class="member-card male" style="border: 2px dashed #a8a29e; background: #fafaf9;">
+            <div class="member-card male" style="border: 2px dashed #a8a29e; background: #fafaf9;" onclick="alert('Bul jerge keleshekte tuwısqan hám qız táreptegi aqlıqlardan tuwılatuǵın shawlıqlar rásmiy dizilip barıladı.')">
                 <div class="member-name" style="color: #a8a29e;">Shawlıqlar</div>
                 <div class="role-tag" style="background: #f5f5f4; color: #a8a29e;">Keleshek áwlad ornı</div>
             </div>
@@ -382,22 +448,28 @@
 
     </div>
 
-    <!-- MODAL -->
+    <!-- TOLÍQ MA'GLÍWMAT MODALÍ -->
     <div id="infoModal" class="modal" onclick="closeDetails()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closeDetails()">&times;</span>
-            <h2 id="modalName" style="margin: 0 0 10px 0; color: #1e3a8a;"></h2>
+            <h2 id="modalName" style="margin: 0 0 5px 0; color: #1e3a8a;"></h2>
             <div class="modal-info-block">
-                <p><strong>Sánesi:</strong> <span id="modalDates"></span></p>
-                <p><strong>Maǵlıwmat:</strong> <span id="modalBio"></span></p>
+                <p><strong>Ómir jılları / Sánesi:</strong> <span id="modalDates"></span></p>
+                <p><strong>Ruwı:</strong> <span id="modalRuw"></span></p>
+                <p><strong>Tuwılǵan jeri:</strong> <span id="modalPlace"></span></p>
+                <p><strong>Házirgi jeri / Jaǵdayı:</strong> <span id="modalStatus"></span></p>
+                <p><strong>Tolıq Maǵlıwmat:</strong> <span id="modalBio"></span></p>
             </div>
         </div>
     </div>
 
     <script>
-        function openDetails(name, dates, place, bio) {
+        function openDetails(name, dates, ruw, place, status, bio) {
             document.getElementById('modalName').innerText = name;
             document.getElementById('modalDates').innerText = dates;
+            document.getElementById('modalRuw').innerText = (ruw && ruw !== '-') ? ruw : 'Kórsetilmegen';
+            document.getElementById('modalPlace').innerText = place;
+            document.getElementById('modalStatus').innerText = status;
             document.getElementById('modalBio').innerText = bio;
             document.getElementById('infoModal').style.display = 'flex';
         }
