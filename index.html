@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="kaa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna Keljanovlar Shejiresi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 5px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        /* SHEJIRE DUZÍLÍSÍ */
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            padding: 20px;
+        }
+
+        .generation-title {
+            background: #1e3a8a;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: -35px;
+            z-index: 3;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .generation {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 25px;
+            position: relative;
+            width: 100%;
+            padding: 20px 0;
+            border-top: 2px dashed #cbd5e1;
+        }
+
+        /* KARTALAR */
+        .member-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 15px;
+            width: 230px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+            border-color: #3b82f6;
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Erler hám Áyeller reńleri */
+        .male { border-left: 5px solid #3b82f6; }
+        .female { border-left: 5px solid #ec4899; }
+
+        .member-avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background-color: #f1f5f9;
+            margin: 0 auto 12px;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .member-name {
+            font-weight: 700;
+            font-size: 1.05em;
+            color: #1e293b;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .member-dates {
+            font-size: 0.85em;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .role-tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.8em;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .male .role-tag { background: #eff6ff; color: #1d4ed8; }
+        .female .role-tag { background: #fdf2f8; color: #be185d; }
+
+        /* MODAL (MAǴLÍWMAT AYNASÍ) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: slideUp 0.3s ease-out;
+            text-align: center;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+        .close-btn:hover { color: #475569; }
+
+        /* MODALDAǴÍ FOTO BÓLIMI */
+        .modal-photo-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 15px auto;
+            border: 4px solid #1e3a8a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+
+        .modal-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info-block {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #1e3a8a;
+            text-align: left;
+        }
+
+        .modal-info-block p {
+            margin: 6px 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Anna Keljanovlar Shejiresi</h1>
+    <p class="subtitle">Shańaraq aǵzaları ústine basıp, tolıq maǵlıwmatlar, ómirbayan hám ruwların kóriń</p>
+
+    <div class="tree">
+        
+        <!-- 1-AWLAD -->
+        <div class="generation-title">1-AWLAD (Katta Atalarımız)</div>
+        <div class="generation">
+            <div class="member-card male" onclick="openDetails('Keljanov Najimatdin', '1916 — 1983 iyul', 'Shimbay rayonı, Tazqara awılı', '-', 'Qurılısshı bolıp jumıs islegen.', 'Najimatdin ata baslı awlad tikarshısı.', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Keljanov Najimatdin</div>
+                <div class="member-dates">1916 — 1983</div>
+                <div class="role-tag">Ata</div>
+            </div>
+
+            <div class="member-card female" onclick="openDetails('Najimova Bazargul', '1914 — 1995 may', 'Kegeyli rayonı', 'Qazayaqlı', 'Úlken apa, shańaraqtıń bereketi.', 'Awladlar anası.', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Najimova Bazargul</div>
+                <div class="member-dates">1914 — 1995</div>
+                <div class="role-tag">Úlken Apa</div>
+            </div>
+        </div>
+
+        <!-- 2-AWLAD -->
+        <div class="generation-title">2-AWLAD</div>
+        <div class="generation">
+            <div class="member-card male" onclick="openDetails('Keljanov Sharapatdin', '1924 — 1995 fevral', 'Shimbay rayonı, Tazqara awılı', '-', '1941-1945 jılları urısqa qatısqan. Ishki isler bóliminde xizmet etken. 9 perzentti dúnyaǵa keltirgen.', 'Ekinshi ata', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Keljanov Sharapatdin</div>
+                <div class="member-dates">1924 — 1995</div>
+                <div class="role-tag">Ekinshi Ata</div>
+            </div>
+
+            <div class="member-card female" onclick="openDetails('Sultanyazova Gúlayım', 'Belgisiz', '-', '-', '9 perzentti dúnyaǵa keltirgen mútteber ana hám áje.', 'Sharapatdin atanıń ómirlik joldası', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Sultanyazova Gúlayım</div>
+                <div class="member-dates">Sharapatdin ata ómirlik joldası</div>
+                <div class="role-tag">Ekinshi Áje</div>
+            </div>
+        </div>
+
+        <!-- 3-AWLAD (A PART) - GULZAR AJAPA QATARÍ -->
+        <div class="generation-title">3-AWLAD (Ajapalar qatlamı)</div>
+        <div class="generation">
+            <div class="member-card female" onclick="openDetails('Nazimova Gulzar Sharapatdinovna', '1949 — Házir tiri', 'Nukus qalası', '-', 'Sharapatdin atanıń 1-perzenti, Xayratdin atanıń úlken ajapası. Súyikli ana hám áje.', 'Kúyewi: Seytimbetov Jumamurat (1947-2023, Shimbay)', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Gulzar Sharapatdinovna</div>
+                <div class="member-dates">1949 — Házir tiri</div>
+                <div class="role-tag">Úlken Ajapa (1-Qız)</div>
+            </div>
+        </div>
+
+        <!-- 3-AWLAD (B PART) - XAYRATDIN & ASIYA QATARÍ -->
+        <div class="generation-title">3-AWLAD (Tıkarǵı Shańaraq Baslıqları)</div>
+        <div class="generation">
+            <div class="member-card male" onclick="openDetails('Keljanov Xayratdin Sharapatdinovich', '1951 (24 avgust) — Házir tiri', 'Nukus qalası', '-', 'Orta maǵlıwmatlı. 1974-jıldan 1994-jılǵa shekem Ishki isler bóliminde xizmet etken, házirgi waqıtta napaqada. Gulzar ajapasınıń baci-ini bolar.', 'Ayeli: Awezova Asiya Qallievna (6 perzent anası)', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Xayratdin Sharapatdinovich</div>
+                <div class="member-dates">1951 — Házir tiri</div>
+                <div class="role-tag">Áke (2-Ulı)</div>
+            </div>
+
+            <div class="member-card female" onclick="openDetails('Awezova Asiya Qallievna', '1959 (14 may) — Házir tiri', 'Qaraózek rayonı, Qazayaqlı awılı', 'Qazayaqlı', 'Orta maǵlıwmatlı. Qalalıq poshta bóliminde xatker bolıp islegen. 6 perzentti dúnyaǵa keltirgen mútteber ana.', 'Xayratdin aganıń ómirlik joldası', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Awezova Asiya Qallievna</div>
+                <div class="member-dates">1959 — Házir tiri</div>
+                <div class="role-tag">Ana</div>
+            </div>
+        </div>
+
+        <!-- 4-AWLAD -->
+        <div class="generation-title">4-AWLAD (Xayratdin & Asiya perzentleri)</div>
+        <div class="generation">
+            <div class="member-card male" onclick="openDetails('Keljanov Shamshetdin Xayratdinovich', '1980 (10 iyun) — Házir tiri', 'Nukus qalası', '-', 'Joqarı maǵlıwmatlı. Esapshı bolıp jumıs isleydi. 5 perzenti bar.', 'Ayeli: Maxanbetova Gulmiyra (Ruwı: Qazayaqlı)', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Shamshetdin</div>
+                <div class="member-dates">1980 — Házir tiri</div>
+                <div class="role-tag">1-Ulı</div>
+            </div>
+
+            <div class="member-card male" onclick="openDetails('Keljanov Baxtiyar Xayratdinovich', '1983 (8 yanvar) — Házir tiri', 'Nukus qalası', '-', 'Orta maǵlıwmatlı. Házirgi waqıtta qurılısshı bolıp xizmet etpekte.', 'Ayeli: Atamuratova Gulchexra (Ruwı: Ayteke)', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Baxtiyar</div>
+                <div class="member-dates">1983 — Házir tiri</div>
+                <div class="role-tag">2-Ulı</div>
+            </div>
+
+            <div class="member-card female" onclick="openDetails('Keljanova Tursinay Xayratdinovna', '29 aprel — Házir tiri', 'Nukus qalası', '-', 'Orta maǵlıwmatlı, ayırıqsha mihriban qız.', 'Kúyewi: Turdimuratov Daryabay (Ruwı: Uygır)', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Tursinay</div>
+                <div class="member-dates">29 Aprel</div>
+                <div class="role-tag">3-Qızı</div>
+            </div>
+
+            <div class="member-card female" onclick="openDetails('Keljanova Quralay Xayratdinovna', '1988 (17 mart) — Házir tiri', 'Nukus qalası', '-', 'Orta maǵlıwmatlı. Medisina salasında mivribiyke bolıp isleydi.', 'Kúyewi: Shimbergenov Salamatdin (Ruwı: Qoldawlı)', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Quralay</div>
+                <div class="member-dates">1988 — Házir tiri</div>
+                <div class="role-tag">4-Qızı</div>
+            </div>
+
+            <div class="member-card male" onclick="openDetails('Keljanov Nurmuxammeddin Xayratdinovich', '1990 (20 may) — Házir tiri', 'Nukus qalası', '-', 'Joqarı maǵlıwmatlı, ájayp baǵdarlamashı hám usı sisteması jaratıwshısı. Házirgi waqıtta uylenbegen.', 'Allá buyırtsa jaqında uylenedi.', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Nurmuxammeddin</div>
+                <div class="member-dates">1990 — Házir tiri</div>
+                <div class="role-tag">5-Ulı</div>
+            </div>
+
+            <div class="member-card female" onclick="openDetails('Keljanova Gulziyra Xayratdinovna', '1991 (30 noyabr) — Házir tiri', 'Nukus qalası', '-', 'Joqarı maǵlıwmatlı, shańaraqtıń kishkene gúli.', 'Kúyewi: Xojabekov Erkinbay (Ruwı: Uygır)', 'https://via.placeholder.com/150')">
+                <img class="member-avatar" src="https://via.placeholder.com/80" alt="Súwret">
+                <div class="member-name">Gulziyra</div>
+                <div class="member-dates">1991 — Házir tiri</div>
+                <div class="role-tag">6-Qızı</div>
+            </div>
+        </div>
+
+        <!-- 5-AWLAD -->
+        <div class="generation-title">5-AWLAD (Agayınlar hám Jiyenler)</div>
+        <div class="generation">
+            <!-- Shamshetdin balaları -->
+            <div class="member-card female" onclick="openDetails('Xayratdinova Dilfayruz', '2006 (28 yanvar)', 'Nukus qalası', 'Qazayaqlı', 'Shamshetdin qızı. Joqarı maǵlıwmatlı keleshek iyesi.', 'Shamshetdin qızı', 'https://via.placeholder.com/150')"><div class="member-name">Dilfayruz</div><div class="role-tag">Shamshetdin qızı</div></div>
+            <div class="member-card female" onclick="openDetails('Xayratdinova Dilshoda', '2007 (22 noyabr)', 'Nukus qalası', 'Qazayaqlı', 'Shamshetdin qızı. Joqarı maǵlıwmatlı keleshek úmiti.', 'Shamshetdin qızı', 'https://via.placeholder.com/150')"><div class="member-name">Dilshoda</div><div class="role-tag">Shamshetdin qızı</div></div>
+            <div class="member-card female" onclick="openDetails('Xayratdinova Maxinur', '2010 (30 may)', 'Taxıatash qalası', 'Qazayaqlı', 'Shamshetdin qızı. Ziyrek hám belsendi jas.', 'Shamshetdin qızı', 'https://via.placeholder.com/150')"><div class="member-name">Maxinur</div><div class="role-tag">Shamshetdin qızı</div></div>
+            <div class="member-card male" onclick="openDetails('Xayratdinov Botirbek', '2013 (30 dekabr)', 'Nukus qalası', 'Qazayaqlı', 'Shamshetdin ulı. Shańaraq belsendisi, mektep oquwshısı.', 'Awlad dawamshısı', 'https://via.placeholder.com/150')"><div class="member-name">Botirbek</div><div class="role-tag">Shamshetdin ulı</div></div>
+            <div class="member-card female" onclick="openDetails('Xayratdinova Mubina', '2021 (25 dekabr)', 'Nukus qalası', 'Qazayaqlı', 'Shamshetdin qızı. Shańaraqtıń eń erke tásirili kishkene qızı.', 'Shamshetdin qızı', 'https://via.placeholder.com/150')"><div class="member-name">Mubina</div><div class="role-tag">Shamshetdin qızı</div></div>
+
+            <!-- Baxtiyar balaları -->
+            <div class="member-card male" onclick="openDetails('Keljanov Ismoil', '2021 (21 aprel)', 'Nukus qalası', 'Ayteke', 'Baxtiyar ulı. Keleshegi ullı sportshı jas.', 'Awlad dawamshısı', 'https://via.placeholder.com/150')"><div class="member-name">Ismoil</div><div class="role-tag">Baxtiyar ulı</div></div>
+            <div class="member-card female" onclick="openDetails('Keljanova Munira', '2022 (16 iyul)', 'Nukus qalası', 'Ayteke', 'Baxtiyar qızı. Tásirili kishkene quwanısh.', 'Baxtiyar qızı', 'https://via.placeholder.com/150')"><div class="member-name">Munira</div><div class="role-tag">Baxtiyar qızı</div></div>
+            <div class="member-card male" onclick="openDetails('Keljanov Ibrahim', '2025 (25 iyul)', 'Nukus qalası', 'Ayteke', 'Baxtiyar ulı. Shańaraqtıń eń kishkentay balası.', 'Awlad dawamshısı', 'https://via.placeholder.com/150')"><div class="member-name">Ibrahim</div><div class="role-tag">Baxtiyar ulı</div></div>
+
+            <!-- Jiyenler -->
+            <div class="member-card female" onclick="openDetails('Jiyemuratova Jasmina', '2022 (21 aprel)', 'Nukus qalası', 'Uygır', 'Tursinay qızı. Ájayp kishkene jiyen.', 'Tursinay qızı', 'https://via.placeholder.com/150')"><div class="member-name">Jasmina</div><div class="role-tag">Tursinay qızı (Jiyen)</div></div>
+            <div class="member-card male" onclick="openDetails('Ziynatdinov Ruslan', '2015 (20 yanvar)', 'Taxıatash rayonı', '-', 'Quralay ulı. Aqıllı hám zerek jiyen.', 'Quralay ulı (Jiyen)', 'https://via.placeholder.com/150')"><div class="member-name">Ruslan</div><div class="role-tag">Quralay ulı (Jiyen)</div></div>
+            <div class="member-card female" onclick="openDetails('Ziynatdinova Ranogul', '2018 (17 mart)', 'Taxıatash rayonı', '-', 'Quralay qızı. Sulw hám aqıllı jiyen qız.', 'Quralay qızı (Jiyen)', 'https://via.placeholder.com/150')"><div class="member-name">Ranogul</div><div class="role-tag">Quralay qızı (Jiyen)</div></div>
+            <div class="member-card male" onclick="openDetails('Jolmurzayev Aydos', '2020 (11 iyun)', 'Nukus qalası', '-', 'Gulziyra ulı. Shańaraqtıń belsendi kishkene jiyeni.', 'Gulziyra ulı (Jiyen)', 'https://via.placeholder.com/150')"><div class="member-name">Aydos</div><div class="role-tag">Gulziyra ulı (Jiyen)</div></div>
+        </div>
+
+    </div>
+
+    <!-- MODAL AYNASÍ -->
+    <div id="infoModal" class="modal" onclick="closeDetails()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeDetails()">&times;</span>
+            <h2 id="modalName" style="margin: 0 0 5px 0; color: #1e3a8a;"></h2>
+            
+            <!-- FOTO JAYLASTÍRÍW BÓLIMI -->
+            <div class="modal-photo-container">
+                <img id="modalPhoto" src="" alt="Shańaraq aǵzası súwreti">
+            </div>
+            
+            <div class="modal-info-block">
+                <p><strong>Tuwılǵan jılı/sánesi:</strong> <span id="modalDates"></span></p>
+                <p><strong>Tuwılǵan jeri:</strong> <span id="modalPlace"></span></p>
+                <p><strong>Ruwı:</strong> <span id="modalRuw"></span></p>
+                <p><strong>Qosımsha / Ómirbayanı:</strong> <span id="modalBio"></span></p>
+                <p style="color: #64748b; font-style: italic; border-top: 1px solid #e2e8f0; padding-top: 8px; margin-top: 10px;">
+                    <span id="modalNote"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openDetails(name, dates, place, ruw, bio, note, photoUrl) {
+            document.getElementById('modalName').innerText = name;
+            document.getElementById('modalDates').innerText = dates;
+            document.getElementById('modalPlace').innerText = place;
+            document.getElementById('modalRuw').innerText = (ruw && ruw !== '-') ? ruw : 'Kórsetilmegen';
+            document.getElementById('modalBio').innerText = bio;
+            document.getElementById('modalNote').innerText = note;
+            
+            var imgTag = document.getElementById('modalPhoto');
+            if(photoUrl) {
+                imgTag.src = photoUrl;
+            } else {
+                imgTag.src = 'https://via.placeholder.com/150';
+            }
+            
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeDetails() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
